@@ -9,11 +9,14 @@ const upload = multer(uploadConfig)
 // CONTROLLERS
 const SessionController = require('./controllers/SessionController')
 const SpotController = require('./controllers/SpotController')
+const DashboardController = require('./controllers/DashboardController')
 
 routes.get('/', (req, res) => res.json({ message: 'Welcome to the AirCNC API ☕️' }))
 routes.post('/sessions', SessionController.store)
 
 routes.get('/spots', SpotController.index)
 routes.post('/spots', upload.single('thumbnail'), SpotController.store)
+
+routes.get('/dashboard', DashboardController.show)
 
 module.exports = routes
